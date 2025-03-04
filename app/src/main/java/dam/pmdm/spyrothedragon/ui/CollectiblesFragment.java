@@ -23,7 +23,6 @@ import dam.pmdm.spyrothedragon.databinding.FragmentCollectiblesBinding;
 import dam.pmdm.spyrothedragon.models.Collectible;
 
 public class CollectiblesFragment extends Fragment {
-
     private FragmentCollectiblesBinding binding;
     private RecyclerView recyclerView;
     private CollectiblesAdapter adapter;

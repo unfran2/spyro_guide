@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle"
+        android:text="@string/informacion_descripcion"
+        android:gravity="center"
+        android:layout_marginTop="75dp"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        />
+
+    <ImageView
+        android:id="@+id/parpadeo_informacion"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="end"
+        android:src="@drawable/rectangle" />
+
+    <include
+        android:id="@+id/saltarGuia"
+        layout="@layout/boton_saltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        />
+    <include
+        android:id="@+id/siguiente"
+        layout="@layout/boton_siguiente"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="right|center"
+        />
+</FrameLayout>

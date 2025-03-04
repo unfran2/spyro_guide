@@ -1,8 +1,15 @@
 package dam.pmdm.spyrothedragon;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -13,11 +20,14 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import dam.pmdm.spyrothedragon.databinding.ActivityMainBinding;
+import dam.pmdm.spyrothedragon.ui.GuideDialogFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     NavController navController = null;
+
+    private GuideDialogFragment guideDialogFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
             NavigationUI.setupActionBarWithNavController(this, navController);
         }
 
+
         binding.navView.setOnItemSelectedListener(this::selectedBottomMenu);
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
@@ -46,8 +57,19 @@ public class MainActivity extends AppCompatActivity {
                 // Si se navega a una pantalla donde se desea mostrar la flecha de atrás, habilítala
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             }
+
+            //utilizo shared preferences para guardar el estado de la guia
+            SharedPreferences prefs = getSharedPreferences("app_prefs", MODE_PRIVATE);
+            boolean hasSeenGuide = prefs.getBoolean("has_seen_guide", false);
+            if (!hasSeenGuide) {
+                GuideDialogFragment guideDialogFragment = new GuideDialogFragment();
+                guideDialogFragment.show(getSupportFragmentManager(), "GuideDialogFragment");
+                prefs.edit().putBoolean("has_seen_guide", true).apply();
+            }
         });
 
+        guideDialogFragment = new GuideDialogFragment();
+        guideDialogFragment.show(getSupportFragmentManager(), "GuideDialogFragment");
     }
 
     private boolean selectedBottomMenu(@NonNull MenuItem menuItem) {
@@ -79,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void showInfoDialog() {
+    public void showInfoDialog() {
         // Crear un diálogo de información
         new AlertDialog.Builder(this)
                 .setTitle(R.string.title_about)
@@ -88,6 +110,26 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
+    public void cerrarGuia() {
+        if (guideDialogFragment != null) {
+            guideDialogFragment.dismiss();
+            guideDialogFragment = null;
+        }
+    }
+
+    public void pulse(ImageView imageView, int duration) {
+        if (imageView == null) return;
+
+        Drawable drawable = imageView.getDrawable();
+        if (drawable == null) {
+            return;
+        }
+
+        ObjectAnimator animator = ObjectAnimator.ofInt(drawable, "alpha", 255, 0, 255);
+        animator.setDuration(duration);
+        animator.setRepeatCount(ValueAnimator.INFINITE);
+        animator.start();
+    }
 
 
 }

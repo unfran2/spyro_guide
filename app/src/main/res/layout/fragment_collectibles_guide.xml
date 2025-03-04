@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/ring_coleccionables"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ring_two"
+        android:layout_gravity="right|bottom"
+        android:layout_marginRight="19dp"
+        android:layout_marginBottom="-14dp"/>
+
+    <TextView
+        android:id="@+id/texto_coleccionables"
+        android:layout_width="347dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="560dp"
+        android:background="@drawable/rectangle"
+        android:gravity="center"
+        android:text="@string/coleccionables_descripcion"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+    <ImageView
+        android:id="@+id/flecha_indica"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/flecha"
+        android:layout_marginTop="720dp"
+        android:layout_marginStart="250dp"
+        android:rotation="45"/>
+    <include
+        android:id="@+id/saltarGuia"
+        layout="@layout/boton_saltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="80dp"/>
+    <include
+        android:id="@+id/siguiente"
+        layout="@layout/boton_siguiente"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="right|center"
+        />
+</FrameLayout>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_guide"
+    app:startDestination="@id/startGuideFragment">
+
+    <fragment
+        android:id="@+id/startGuideFragment"
+        android:name="dam.pmdm.spyrothedragon.StartGuideFragment"
+        android:label="StartGuideFragment">
+        <action
+            android:id="@+id/action_startGuideFragment_to_charactersGuideFragment"
+            app:destination="@id/charactersGuideFragment"
+            app:enterAnim="@transition/desde_arriba"
+            app:popEnterAnim="@transition/desde_arriba" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/charactersGuideFragment"
+        android:name="dam.pmdm.spyrothedragon.CharactersGuideFragment"
+        android:label="CharactersGuideFragment">
+        <action
+            android:id="@+id/action_charactersGuideFragment_to_worldsGuideFragment"
+            app:destination="@id/worldsGuideFragment"
+            app:enterAnim="@transition/desde_arriba"
+            app:popEnterAnim="@transition/desde_abajo"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/worldsGuideFragment"
+        android:name="dam.pmdm.spyrothedragon.WorldsGuideFragment"
+        android:label="WorldsGuideFragment">
+        <action
+            android:id="@+id/action_worldsGuideFragment_to_collectiblesGuideFragment"
+            app:destination="@id/collectiblesGuideFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/collectiblesGuideFragment"
+        android:name="dam.pmdm.spyrothedragon.CollectiblesGuideFragment"
+        android:label="CollectiblesGuideFragment">
+        <action
+            android:id="@+id/action_collectiblesGuideFragment_to_informationGuideFragment"
+            app:destination="@id/informationGuideFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/informationGuideFragment"
+        android:name="dam.pmdm.spyrothedragon.InformationGuideFragment"
+        android:label="InformationGuideFragment">
+        <action
+            android:id="@+id/action_informationGuideFragment_to_summaryGuideFragment"
+            app:destination="@id/summaryGuideFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/summaryGuideFragment"
+        android:name="dam.pmdm.spyrothedragon.SummaryGuideFragment"
+        android:label="SummaryGuideFragment" />
+</navigation>
